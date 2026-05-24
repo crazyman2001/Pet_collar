@@ -50,8 +50,8 @@ Per-module guide: public API, source files, call graph, and implementation notes
 
 ### `board_init()` behavior
 
-1. Configure outputs: modem power (`GPIO32`), reset (`GPIO5`), power hold (`GPIO4`), GPS reset (`GPIO27`), VBAT ADC enable (`GPIO33`), 1V8 enable (`GPIO26`)
-2. Configure inputs with pull-up: `LIGHT_INT`, `MEMS_INT`, `RESP_INT`
+1. Configure outputs: modem power (`GPIO26`), reset (`GPIO27`), power hold (`GPIO23`), GPS reset (`GPIO18`), VBAT ADC enable (`GPIO5`)
+2. Configure inputs with pull-up: `LIGHT_INT` (`GPIO25`), `MEMS_INT` (`GPIO33`), `RESP_INT` (`GPIO32`)
 3. Create I2C master: SDA=21, SCL=22, 400 kHz
 
 ### Extension: add sensor device handles
@@ -117,9 +117,9 @@ bool collar_state_machine_modem_allowed(void);
 ### Power sequence (`modem_manager_power_on`)
 
 ```text
-ESP_VDD_CTRL (GPIO32) = 1
-POWER_HOLD (GPIO4)     = 1
-GSM_RST (GPIO5)        = 0  (assert reset)
+ESP_VDD_CTRL (GPIO26) = 1
+POWER_HOLD (GPIO23)   = 1
+GSM_RST (GPIO27)      = 0  (assert reset)
 delay 200 ms
 GSM_RST                = 1  (release)
 delay BOARD_MODEM_BOOT_MS (8000 ms)

@@ -54,10 +54,10 @@ flowchart TD
 
 | Signal | GPIO | Function |
 |--------|------|----------|
-| `ESP_VDD_CTRL` | 32 | Modem VBAT load switch |
-| `POWER_HOLD` | 4 | Keep modem alive after ESP wake |
-| `GSM_RST` | 5 | Hardware reset |
-| `GSM_TX` / `GSM_RX` | 17 / 16 | UART1 AT + PPP |
+| `ESP_VDD_CTRL` | 26 | Modem VBAT load switch |
+| `POWER_HOLD` | 23 | Keep modem alive after ESP wake |
+| `GSM_RST` | 27 | Hardware reset |
+| `GSM_TX` / `GSM_RX` | 16 / 17 | UART1 AT + PPP |
 
 ### Expected AT flow (to implement)
 

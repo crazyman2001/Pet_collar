@@ -67,21 +67,21 @@ flowchart TB
 | SDA | 21 | OPT3001, LSM6DSOX, MAX30105 |
 | SCL | 22 | (shared) |
 
-| Interrupt | GPIO | Device |
-|-----------|------|--------|
-| LIGHT_INT | 12 | OPT3001 |
-| MEMS_INT | 13 | LSM6DSOX |
-| RESP_INT | 14 | MAX30105 |
+| Interrupt | GPIO | Device | Net label |
+|-----------|------|--------|----------|
+| LIGHT_INT | 25 | OPT3001 | LIGHT_INIT |
+| MEMS_INT | 33 | LSM6DSOX | MEMS_INIT |
+| RESP_INT | 32 | MAX30105 | RESP_INT |
 
 ### 3.2 Modem (A7670C)
 
 | Net (schematic) | GPIO | Direction (ESP) |
 |-----------------|------|-----------------|
-| GSM_TX | 17 | ESP TX → modem RX |
-| GSM_RX | 16 | ESP RX ← modem TX |
-| GSM_RST | 5 | Output |
-| ESP_VDD_CTRL | 32 | Modem power switch |
-| POWER_HOLD | 4 | Hold power latch |
+| GSM_TX | 16 | ESP TX → modem RX |
+| GSM_RX | 17 | ESP RX ← modem TX |
+| GSM_RST | 27 | Output |
+| ESP_VDD_CTRL | 26 | Modem power switch |
+| POWER_HOLD | 23 | Hold power latch |
 
 UART: `UART_NUM_1`, 115200 baud.
 
@@ -89,9 +89,9 @@ UART: `UART_NUM_1`, 115200 baud.
 
 | Net | GPIO |
 |-----|------|
-| GPS_TX | 19 |
-| GPS_RX | 18 |
-| GPS_RST | 27 |
+| GPS_TX | 12 |
+| GPS_RX | 14 |
+| GPS_RST | 18 |
 
 UART: `UART_NUM_2`, 9600 baud.
 
@@ -101,13 +101,13 @@ UART: `UART_NUM_2`, 9600 baud.
 |-----|------|-------------|
 | TEMP_ADC | 34 | ADC1_CH6 |
 | VBAT_ADC | 35 | ADC1_CH7 |
-| VBAT_ADC_ON | 33 | Enable divider |
+| VBAT_ADC_ON | 5 | Enable divider |
 
 ### 3.5 Other
 
-| Net | GPIO |
-|-----|------|
-| EN_1V8 | 26 |
+| Net | GPIO | Notes |
+|-----|------|-------|
+| BOOT_KEY | 0 | Strap / boot key |
 
 ---
 
