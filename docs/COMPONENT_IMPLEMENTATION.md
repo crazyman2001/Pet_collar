@@ -50,8 +50,8 @@ Per-module guide: public API, source files, call graph, and implementation notes
 
 ### `board_init()` behavior
 
-1. Configure outputs: modem power (`GPIO26`), reset (`GPIO27`), power hold (`GPIO23`), GPS reset (`GPIO18`), VBAT ADC enable (`GPIO5`)
-2. Configure inputs with pull-up: `LIGHT_INT` (`GPIO25`), `MEMS_INT` (`GPIO33`), `RESP_INT` (`GPIO32`)
+1. Configure outputs: `TEMP_VDD` (`GPIO26`), `GSM_RST` (`GPIO27`), `POWER_HOLD` (`GPIO23`), `GPS_RST` (`GPIO18`), `VBAT_ADC_ON` (`GPIO5`)
+2. Configure inputs with pull-up: `LIGHT_INIT` (`GPIO25`), `MEMS_INIT` (`GPIO33`), `RESP_INT` (`GPIO32`)
 3. Create I2C master: SDA=21, SCL=22, 400 kHz
 
 ### Extension: add sensor device handles
@@ -112,18 +112,18 @@ bool collar_state_machine_modem_allowed(void);
 
 ---
 
-## 5. `modem` — A7670C
+## 5. `modem` — A7670E
 
-### Power sequence (`modem_manager_power_on`)
+### Reset / UART sequence (`modem_manager_power_on`)
 
 ```text
-ESP_VDD_CTRL (GPIO26) = 1
-POWER_HOLD (GPIO23)   = 1
-GSM_RST (GPIO27)      = 0  (assert reset)
+GSM_RST (GPIO27) = 0  (assert reset)
 delay 200 ms
-GSM_RST                = 1  (release)
+GSM_RST           = 1  (release)
 delay BOARD_MODEM_BOOT_MS (8000 ms)
 ```
+
+`TEMP_VDD` (`GPIO26`) is reserved for the thermistor rail, and `POWER_HOLD` (`GPIO23`) is treated as a board-level hold signal.
 
 ### PPP (`modem_manager_start_ppp`) — stub
 

@@ -27,14 +27,12 @@ extern "C" {
 #define BOARD_RESP_INT_GPIO     GPIO_NUM_32   /* net: RESP_INT */
 
 /* -------------------------------------------------------------------------- */
-/* UART — A7670C 4G/LTE modem (PPP data path)                                 */
+/* UART — A7670E 4G/LTE modem (PPP data path)                                 */
 /* -------------------------------------------------------------------------- */
 #define BOARD_UART_MODEM        UART_NUM_1
 #define BOARD_MODEM_TX_GPIO     GPIO_NUM_16   /* net: GSM_TX */
 #define BOARD_MODEM_RX_GPIO     GPIO_NUM_17   /* net: GSM_RX */
 #define BOARD_MODEM_RST_GPIO    GPIO_NUM_27   /* net: GSM_RST */
-#define BOARD_MODEM_PWR_GPIO    GPIO_NUM_26   /* net: ESP_VDD_CTRL */
-#define BOARD_MODEM_POWER_HOLD  GPIO_NUM_23   /* net: POWER_HOLD */
 #define BOARD_MODEM_UART_BAUD   115200
 
 /* -------------------------------------------------------------------------- */
@@ -52,6 +50,12 @@ extern "C" {
 #define BOARD_TEMP_ADC_GPIO     GPIO_NUM_34   /* net: TEMP_ADC  (ADC1_CH6) */
 #define BOARD_VBAT_ADC_GPIO     GPIO_NUM_35   /* net: VBAT_ADC  (ADC1_CH7) */
 #define BOARD_VBAT_ADC_EN_GPIO  GPIO_NUM_5    /* net: VBAT_ADC_ON */
+#define BOARD_TEMP_VDD_GPIO     GPIO_NUM_26   /* net: ESP_VDD_CTRL / thermistor rail */
+
+/* -------------------------------------------------------------------------- */
+/* Board / system controls                                                     */
+/* -------------------------------------------------------------------------- */
+#define BOARD_POWER_HOLD_GPIO   GPIO_NUM_23   /* net: POWER_HOLD */
 
 /* -------------------------------------------------------------------------- */
 /* Boot / strapping                                                           */

@@ -39,14 +39,12 @@ esp_err_t modem_manager_power_on(void)
     if (s_powered) {
         return ESP_OK;
     }
-    gpio_set_level(BOARD_MODEM_PWR_GPIO, 1);
-    gpio_set_level(BOARD_MODEM_POWER_HOLD, 1);
     gpio_set_level(BOARD_MODEM_RST_GPIO, 0);
     vTaskDelay(pdMS_TO_TICKS(200));
     gpio_set_level(BOARD_MODEM_RST_GPIO, 1);
     vTaskDelay(pdMS_TO_TICKS(BOARD_MODEM_BOOT_MS));
     s_powered = true;
-    ESP_LOGI(TAG, "A7670 powered on");
+    ESP_LOGI(TAG, "A7670 reset released");
     return ESP_OK;
 }
 
@@ -56,10 +54,8 @@ esp_err_t modem_manager_power_off(void)
         return ESP_OK;
     }
     modem_manager_stop_ppp();
-    gpio_set_level(BOARD_MODEM_POWER_HOLD, 0);
-    gpio_set_level(BOARD_MODEM_PWR_GPIO, 0);
     s_powered = false;
-    ESP_LOGI(TAG, "A7670 powered off");
+    ESP_LOGI(TAG, "A7670 power-off sequence deferred to board power management");
     return ESP_OK;
 }
 

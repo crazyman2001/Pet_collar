@@ -73,15 +73,15 @@ flowchart TB
 | MEMS_INT | 33 | LSM6DSOX | MEMS_INIT |
 | RESP_INT | 32 | MAX30105 | RESP_INT |
 
-### 3.2 Modem (A7670C)
+### 3.2 Modem (A7670E)
 
 | Net (schematic) | GPIO | Direction (ESP) |
 |-----------------|------|-----------------|
 | GSM_TX | 16 | ESP TX → modem RX |
 | GSM_RX | 17 | ESP RX ← modem TX |
 | GSM_RST | 27 | Output |
-| ESP_VDD_CTRL | 26 | Modem power switch |
-| POWER_HOLD | 23 | Hold power latch |
+
+A7670E uses `GSM_TX`, `GSM_RX`, and `GSM_RST` only.
 
 UART: `UART_NUM_1`, 115200 baud.
 
@@ -102,12 +102,14 @@ UART: `UART_NUM_2`, 9600 baud.
 | TEMP_ADC | 34 | ADC1_CH6 |
 | VBAT_ADC | 35 | ADC1_CH7 |
 | VBAT_ADC_ON | 5 | Enable divider |
+| TEMP_VDD | 26 | Thermistor supply rail |
 
 ### 3.5 Other
 
 | Net | GPIO | Notes |
 |-----|------|-------|
 | BOOT_KEY | 0 | Strap / boot key |
+| POWER_HOLD | 23 | Board-level hold / shutdown control |
 
 ---
 

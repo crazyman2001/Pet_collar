@@ -16,9 +16,9 @@ i2c_master_bus_handle_t board_get_i2c_bus(void)
 esp_err_t board_init(void)
 {
     const gpio_config_t outputs = {
-        .pin_bit_mask = (1ULL << BOARD_MODEM_PWR_GPIO) | (1ULL << BOARD_MODEM_RST_GPIO) |
-                        (1ULL << BOARD_MODEM_POWER_HOLD) | (1ULL << BOARD_GPS_RST_GPIO) |
-                        (1ULL << BOARD_VBAT_ADC_EN_GPIO),
+        .pin_bit_mask = (1ULL << BOARD_MODEM_RST_GPIO) | (1ULL << BOARD_POWER_HOLD_GPIO) |
+                        (1ULL << BOARD_GPS_RST_GPIO) | (1ULL << BOARD_VBAT_ADC_EN_GPIO) |
+                        (1ULL << BOARD_TEMP_VDD_GPIO),
         .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
@@ -26,11 +26,11 @@ esp_err_t board_init(void)
     };
     ESP_ERROR_CHECK(gpio_config(&outputs));
 
-    gpio_set_level(BOARD_MODEM_PWR_GPIO, 0);
     gpio_set_level(BOARD_MODEM_RST_GPIO, 1);
-    gpio_set_level(BOARD_MODEM_POWER_HOLD, 0);
+    gpio_set_level(BOARD_POWER_HOLD_GPIO, 0);
     gpio_set_level(BOARD_GPS_RST_GPIO, 1);
     gpio_set_level(BOARD_VBAT_ADC_EN_GPIO, 0);
+    gpio_set_level(BOARD_TEMP_VDD_GPIO, 1);
 
     const gpio_config_t inputs = {
         .pin_bit_mask = (1ULL << BOARD_LIGHT_INT_GPIO) | (1ULL << BOARD_MEMS_INT_GPIO) |

@@ -48,16 +48,18 @@ flowchart TD
 
 ---
 
-## 3. Cellular PPP (A7670C)
+## 3. Cellular PPP (A7670E)
 
 ### Hardware control
 
 | Signal | GPIO | Function |
 |--------|------|----------|
-| `ESP_VDD_CTRL` | 26 | Modem VBAT load switch |
-| `POWER_HOLD` | 23 | Keep modem alive after ESP wake |
+| `TEMP_VDD` | 26 | Thermistor supply rail |
+| `POWER_HOLD` | 23 | Board-level hold / shutdown control |
 | `GSM_RST` | 27 | Hardware reset |
 | `GSM_TX` / `GSM_RX` | 16 / 17 | UART1 AT + PPP |
+
+A7670E uses `GSM_TX`, `GSM_RX`, and `GSM_RST` only.
 
 ### Expected AT flow (to implement)
 
