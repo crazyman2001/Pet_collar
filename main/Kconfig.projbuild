@@ -1,0 +1,28 @@
+menu "KtinosCare Collar Configuration"
+
+    config COLLAR_WIFI_SSID
+        string "Default Wi-Fi SSID"
+        default ""
+        help
+            Stored credentials should be loaded from NVS in production.
+            This Kconfig value is for lab bring-up only.
+
+    config COLLAR_WIFI_PASSWORD
+        string "Default Wi-Fi password"
+        default ""
+        help
+            Lab bring-up only. Leave empty to configure via NVS.
+
+    config COLLAR_MQTT_BROKER_URI
+        string "MQTT broker URI (mqtts://host:8883)"
+        default "mqtts://broker.example.com:8883"
+
+    config COLLAR_DEVICE_UID
+        string "Device UID for topic namespace"
+        default "collar_dev_001"
+
+    config COLLAR_LTE_APN
+        string "LTE APN for PPP dial-up"
+        default "internet"
+
+endmenu
