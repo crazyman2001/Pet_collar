@@ -13,7 +13,7 @@ flowchart TB
     end
 
     subgraph Sensors["Sensor cluster"]
-        PPG[MAX30105 U10 — PPG HR/RR]
+        PPG[MAX30102 U10 — PPG HR/RR]
         IMU[LSM6DSOX U2 — activity]
         ALS[OPT3001 U1 — daylight]
         THERM[Thermistor — skin temp ADC]
@@ -64,14 +64,14 @@ flowchart TB
 
 | Signal | GPIO | Devices |
 |--------|------|---------|
-| SDA | 21 | OPT3001, LSM6DSOX, MAX30105 |
+| SDA | 21 | OPT3001, LSM6DSOX, MAX30102 |
 | SCL | 22 | (shared) |
 
 | Interrupt | GPIO | Device | Net label |
 |-----------|------|--------|----------|
 | LIGHT_INT | 25 | OPT3001 | LIGHT_INIT |
 | MEMS_INT | 33 | LSM6DSOX | MEMS_INIT |
-| RESP_INT | 32 | MAX30105 | RESP_INT |
+| RESP_INT | 32 | MAX30102 | RESP_INT |
 
 ### 3.2 Modem (A7670E)
 
@@ -117,7 +117,7 @@ UART: `UART_NUM_2`, 9600 baud.
 
 | Part | Interface | Metrics | SRS |
 |------|-----------|---------|-----|
-| MAX30105 | I2C + RESP_INT | Heart rate, respiration trend | FR-1, FR-2 |
+| MAX30102 | I2C + RESP_INT | Heart rate, respiration trend | FR-1, FR-2 |
 | LSM6DSOX | I2C + MEMS_INT | Activity class, steps, motion wake | FR-3, FR-5, FR-7 |
 | OPT3001 | I2C + LIGHT_INT | Ambient lux / daylight | FR-5a |
 | NTC thermistor | ADC34 | Skin temperature trend | FR-4 |

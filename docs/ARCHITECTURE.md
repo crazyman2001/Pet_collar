@@ -256,7 +256,7 @@ From `partitions.csv`:
 
 | Module | Status | Next implementation step |
 |--------|--------|---------------------------|
-| `board` | **Partial** | Confirm GPIO vs schematic; add MAX30105/LSM6DSOX/OPT3001 I2C devices |
+| `board` | **Partial** | Confirm GPIO vs schematic; add MAX30102/LSM6DSOX/OPT3001 I2C devices |
 | `state_machine` | **Complete** (core logic) | Wire deep sleep, charger detect events |
 | `connectivity` | **Partial** | NVS Wi-Fi credentials; real PPP success detection |
 | `modem` | **Stub** | Integrate `esp_modem`, AT dial-up, `esp_netif` PPP |

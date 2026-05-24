@@ -16,7 +16,7 @@ static void sensor_task(void *arg)
         const uint32_t interval_ms = collar_state_machine_get_report_interval_sec() * 1000U;
 
         /*
-         * TODO: MAX30105 (PPG), LSM6DSOX (IMU), OPT3001 (ALS), thermistor ADC.
+         * TODO: MAX30102 (PPG), LSM6DSOX (IMU), OPT3001 (ALS), thermistor ADC.
          * Adaptive sampling per activity state (SRS FR-5).
          */
         s_snap.avg_heart_rate = 80.0f;

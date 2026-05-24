@@ -58,13 +58,13 @@ Per-module guide: public API, source files, call graph, and implementation notes
 
 ```c
 // Future in board_init.c or sensors/
-i2c_device_config_t max30105_cfg = {
+i2c_device_config_t max30102_cfg = {
     .dev_addr_length = I2C_ADDR_BIT_LEN_7,
     .device_address = 0x57,
     .scl_speed_hz = BOARD_I2C_FREQ_HZ,
 };
-i2c_master_dev_handle_t max30105;
-i2c_master_bus_add_device(s_i2c_bus, &max30105_cfg, &max30105);
+i2c_master_dev_handle_t max30102;
+i2c_master_bus_add_device(s_i2c_bus, &max30102_cfg, &max30102);
 ```
 
 ---
@@ -179,7 +179,7 @@ Fills placeholder values; real implementation:
 
 | Sensor | Bus | Part | SRS |
 |--------|-----|------|-----|
-| PPG | I2C | MAX30105 | FR-1, FR-2 |
+| PPG | I2C | MAX30102 | FR-1, FR-2 |
 | IMU | I2C | LSM6DSOX | FR-3, FR-5 |
 | ALS | I2C | OPT3001 | FR-5a |
 | Skin temp | ADC | Thermistor → `TEMP_ADC` | FR-4 |
