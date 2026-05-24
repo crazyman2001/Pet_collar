@@ -45,7 +45,7 @@ esp_err_t sensor_manager_init(void)
 
 esp_err_t sensor_manager_start_task(void)
 {
-    const BaseType_t ok = xTaskCreate(sensor_task, "sensors", 6144, NULL, 4, NULL, 0);
+    const BaseType_t ok = xTaskCreatePinnedToCore(sensor_task, "sensors", 6144, NULL, 4, NULL, 0);
     return ok == pdPASS ? ESP_OK : ESP_FAIL;
 }
 

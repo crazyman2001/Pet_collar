@@ -109,7 +109,7 @@ esp_err_t gps_l89_start_task(void)
         return ESP_ERR_INVALID_STATE;
     }
     s_running = true;
-    const BaseType_t ok = xTaskCreate(gps_task, "gps_l89", 4096, NULL, 4, NULL, 1);
+    const BaseType_t ok = xTaskCreatePinnedToCore(gps_task, "gps_l89", 4096, NULL, 4, NULL, 1);
     return ok == pdPASS ? ESP_OK : ESP_FAIL;
 }
 

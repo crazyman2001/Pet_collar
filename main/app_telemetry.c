@@ -7,11 +7,9 @@
 
 #include "connectivity_manager.h"
 #include "modem_manager.h"
-#include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
-static const char *TAG = "telemetry";
 static collar_state_t s_last_state = COLLAR_STATE_OFF;
 
 static void on_state_change(collar_state_t state)

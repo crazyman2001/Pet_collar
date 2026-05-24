@@ -66,7 +66,7 @@ esp_err_t power_manager_init(void)
 
 esp_err_t power_manager_start_task(void)
 {
-    const BaseType_t ok = xTaskCreate(power_task, "power", 3072, NULL, 3, NULL, 0);
+    const BaseType_t ok = xTaskCreatePinnedToCore(power_task, "power", 3072, NULL, 3, NULL, 0);
     return ok == pdPASS ? ESP_OK : ESP_FAIL;
 }
 
