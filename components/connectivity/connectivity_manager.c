@@ -41,7 +41,16 @@ static void connectivity_task(void *arg)
     ESP_ERROR_CHECK(wifi_manager_start());
 
     for (;;) {
-        if (wifi_manager_is_connected()) {
+        if (wifi_manager_is_provisioning()) {
+            /* AP + HTTP config only — no cloud uplink or LTE failover */
+            if (s_has_ip) {
+                notify_wifi_down();
+            }
+            vTaskDelay(pdMS_TO_TICKS(2000));
+            continue;
+        }
+
+        if (wifi_manager_is_sta_connected()) {
             if (!s_has_ip) {
                 notify_wifi_up();
             }
@@ -72,7 +81,7 @@ static void connectivity_task(void *arg)
 esp_err_t connectivity_manager_start(void)
 {
     const BaseType_t ok = xTaskCreatePinnedToCore(
-        connectivity_task, "connectivity", 6144, NULL, 6, NULL, 1);
+        connectivity_task, "connectivity", 8192, NULL, 6, NULL, 1);
     return ok == pdPASS ? ESP_OK : ESP_FAIL;
 }
 

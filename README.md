@@ -16,6 +16,17 @@ Firmware for the smart dog health monitoring collar (ESP32-WROOM), aligned with:
 
 Cellular modem and GPS are **not** used while Wi-Fi is connected (SRS FR-10a).
 
+## Wi-Fi provisioning
+
+On boot the firmware reads SSID/password from NVS (`wifi_cfg`). If missing or STA connect fails, it starts a **fixed soft-AP** and an **HTTP server** at `http://192.168.4.1/` to save new credentials (then reboots).
+
+| Setting | Default (menuconfig) |
+|---------|----------------------|
+| Provisioning AP SSID | `KtinosCollar-Setup` |
+| Provisioning AP password | `ktinos1234` |
+| STA connect timeout | 30 s |
+| STA retries before AP | 5 |
+
 ## Architecture documentation
 
 Detailed design and code-level implementation guides are in **[docs/](./docs/)**:

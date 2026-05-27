@@ -1,17 +1,33 @@
 menu "KtinosCare Collar Configuration"
 
-    config COLLAR_WIFI_SSID
-        string "Default Wi-Fi SSID"
-        default ""
+    config COLLAR_PROV_AP_SSID
+        string "Provisioning soft-AP SSID (fixed)"
+        default "KtinosCollar-Setup"
         help
-            Stored credentials should be loaded from NVS in production.
-            This Kconfig value is for lab bring-up only.
+            SSID broadcast when no credentials in flash or STA connect fails.
 
-    config COLLAR_WIFI_PASSWORD
-        string "Default Wi-Fi password"
-        default ""
+    config COLLAR_PROV_AP_PASSWORD
+        string "Provisioning soft-AP password (fixed)"
+        default "ktinos1234"
         help
-            Lab bring-up only. Leave empty to configure via NVS.
+            WPA2 password for provisioning AP. Leave empty for open AP.
+
+    config COLLAR_PROV_AP_CHANNEL
+        int "Provisioning soft-AP channel"
+        range 1 13
+        default 6
+
+    config COLLAR_STA_CONNECT_TIMEOUT_SEC
+        int "STA initial connect timeout (seconds)"
+        range 10 120
+        default 30
+        help
+            Max time to wait for IP after boot before opening provisioning AP.
+
+    config COLLAR_STA_RETRY_MAX
+        int "STA disconnect retries before provisioning AP"
+        range 1 20
+        default 5
 
     config COLLAR_MQTT_BROKER_URI
         string "MQTT broker URI (mqtts://host:8883)"
